@@ -1,0 +1,16 @@
+#!${package.codedir}/bin/python2
+#
+# From https://wiki.mediagoblin.org/Deployment#Apache_2_Config_With_mod_wsgi
+# with changes
+#
+
+import os
+os.environ['PYTHON_EGG_CACHE'] = '/var/cache/${appconfig.appconfigid}/egg-cache'
+
+import site
+site.addsitedir('${package.codedir}/mediagoblin/lib/python2.7/site-packages')
+  
+from paste.deploy import loadapp
+ 
+CONFIG_PATH = '${appconfig.datadir}/paste.ini'
+application = loadapp('config:' + CONFIG_PATH)

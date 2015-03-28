@@ -1,0 +1,29 @@
+# From https://wiki.mediagoblin.org/Deployment#Apache_2_Config_With_mod_wsgi
+# with changes
+
+Alias /mgoblin_static/ ${package.codedir}/mediagoblin/mediagoblin/static/
+Alias /mgoblin_media/ ${appconfig.datadir}/media/public/
+ 
+WSGIScriptAlias / ${appconfig.apache2.dir}/wsgi.py
+
+# Set user and group to whatever user you used to install mediagoblin (if you used a system account, 
+# it may have the group 'nogroup' assigned, in that case you can remove the group parameter)
+# Remember to change python-path too!
+# Replace the python version in the 'python-path' below with the correct one (eg 2.x -> 2.7)
+
+WSGIPassAuthorization On
+# WSGIDaemonProcess gmg user=mediagoblin group=mediagoblin processes=2 threads=10 \
+#        umask=0007 inactivity-timeout=900 maximum-requests=1000 \
+#        python-path=/path/to/mediagoblin/:/path/to/mediagoblin/lib/python-2.x/site-packages/
+WSGIDaemonProcess gmg processes=2 threads=10 \
+       umask=0007 inactivity-timeout=900 maximum-requests=1000 \
+       python-path=${package.codedir}/mediagoblin:${package.codedir}/mediagoblin/lib/python2.7/site-packages
+WSGIProcessGroup gmg
+WSGIApplicationGroup %{GLOBAL}
+
+<Directory "${package.codedir}/mediagoblin/mediagoblin/static">
+    Require all granted
+</Directory>
+<Directory "${appconfig.datadir}/media/public">
+    Require all granted
+</Directory>

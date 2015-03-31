@@ -46,12 +46,6 @@
                 },
                 {
                     "type"         : "file",
-                    "name"         : "${appconfig.datadir}/paste.ini",
-                    "template"     : "tmpl/paste.ini.tmpl",
-                    "templatelang" : "varsubst"
-                },
-                {
-                    "type"         : "file",
                     "name"         : "${appconfig.datadir}/mediagoblin.ini",
                     "template"     : "tmpl/mediagoblin.ini.tmpl",
                     "templatelang" : "varsubst"

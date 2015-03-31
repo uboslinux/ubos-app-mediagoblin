@@ -1,8 +1,8 @@
 # From https://wiki.mediagoblin.org/Deployment#Apache_2_Config_With_mod_wsgi
 # with changes
 
-Alias /mgoblin_static/ ${package.codedir}/mediagoblin/mediagoblin/static/
-Alias /mgoblin_media/ ${appconfig.datadir}/media/public/
+Alias /mgoblin_static/ ${package.codedir}/mediagoblin/static/
+Alias /mgoblin_media/ ${appconfig.datadir}/user_dev/media/public/
  
 WSGIScriptAlias / ${appconfig.apache2.dir}/wsgi.py
 
@@ -12,18 +12,15 @@ WSGIScriptAlias / ${appconfig.apache2.dir}/wsgi.py
 # Replace the python version in the 'python-path' below with the correct one (eg 2.x -> 2.7)
 
 WSGIPassAuthorization On
-# WSGIDaemonProcess gmg user=mediagoblin group=mediagoblin processes=2 threads=10 \
-#        umask=0007 inactivity-timeout=900 maximum-requests=1000 \
-#        python-path=/path/to/mediagoblin/:/path/to/mediagoblin/lib/python-2.x/site-packages/
 WSGIDaemonProcess gmg processes=2 threads=10 \
        umask=0007 inactivity-timeout=900 maximum-requests=1000 \
-       python-path=${package.codedir}/mediagoblin:${package.codedir}/mediagoblin/lib/python2.7/site-packages
+       python-path=${package.codedir}/mediagoblin
 WSGIProcessGroup gmg
 WSGIApplicationGroup %{GLOBAL}
 
-<Directory "${package.codedir}/mediagoblin/mediagoblin/static">
+<Directory "${package.codedir}/mediagoblin/static">
     Require all granted
 </Directory>
-<Directory "${appconfig.datadir}/media/public">
+<Directory "${appconfig.datadir}/user_dev/media/public">
     Require all granted
 </Directory>

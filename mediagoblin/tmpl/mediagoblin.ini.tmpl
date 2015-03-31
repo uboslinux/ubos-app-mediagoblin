@@ -4,9 +4,9 @@ email_sender_address = "noreply@${site.hostnameorsystemhostname}"
 
 sql_engine = postgresql://${appconfig.postgresql.dbuser.maindb}:${appconfig.postgresql.dbusercredential.maindb}@${appconfig.postgresql.dbhost.maindb}:${appconfig.postgresql.dbport.maindb}/${appconfig.postgresql.dbname.maindb}
 
-email_debug_mode = true
-allow_registration = true
-allow_reporting = true
+email_debug_mode = ${installable.customizationpoints.emaildebugmode.value}
+allow_registration = ${installable.customizationpoints.allowregistration.value}
+allow_reporting = ${installable.customizationpoints.allowreporting.value}
 
 # local_templates = %(here)s/user_dev/templates/
 
@@ -26,9 +26,6 @@ base_dir = %(here)s/user_dev/media/queue
 [storage:publicstore]
 base_dir = %(here)s/user_dev/media/public
 base_url = /mgoblin_media/
-
-[celery]
-# Put celery stuff here
 
 # Place plugins here, each in their own subsection of [plugins].
 # See http://docs.mediagoblin.org/siteadmin/plugins.html for details.

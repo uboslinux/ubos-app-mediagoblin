@@ -24,9 +24,15 @@ build() {
 
     git submodule init && git submodule update
 
-    virtualenv2 --system-site-packages --no-setuptools .
-    ./bin/python2 ./setup.py develop
-    virtualenv2 --system-site-packages --relocatable .
+    [ -d site-packages ] || mkdir site-packages
+    PYTHONPATH=$(pwd)/site-packages python2 setup.py develop --verbose --install-dir $(pwd)/site-packages
+
+# These are from the mediagoblin instructions, but I can't get them to not include the
+# build paths
+#
+#    virtualenv2 --system-site-packages --no-setuptools .
+#    ./bin/python2 ./setup.py develop
+#    virtualenv2 --system-site-packages --relocatable .
 }
 
 package() {
@@ -53,7 +59,8 @@ package() {
 #    install -m644 ${startdir}/tmpl/htaccess.tmpl ${pkgdir}/usr/share/${pkgname}/tmpl/
 #    touch ${pkgdir}/usr/share/${pkgname}/tmpl/ocdata
 
-    cp -dr --no-preserve=ownership ${startdir}/src/mediagoblin ${pkgdir}/usr/share/${pkgname}/
+    cp -dr --no-preserve=ownership ${startdir}/src/mediagoblin/mediagoblin ${pkgdir}/usr/share/${pkgname}/
+#    rsync -r -l -p -t --exclude .git --exclude ${startdir}/src/mediagoblin ${pkgdir}/usr/share/${pkgname}/
 }
 
 
@@ -69,8 +76,6 @@ xxxxpackage() {
   find . -type f -exec sed -i "s|$srcdir/$_gitrepo|/usr/share/webapps/mediagoblin|g" {} \;
 
   install -dm755 "$pkgdir"/var/run/mediagoblin "$pkgdir"/var/lib/mediagoblin
-  install -Dm644 "$srcdir"/paste_local.ini "$pkgdir"/usr/share/webapps/mediagoblin/paste_local.ini
-  install -Dm644 "$srcdir"/mediagoblin_local.ini "$pkgdir"/usr/share/webapps/mediagoblin/mediagoblin_local.ini
   install -Dm644 "$srcdir"/mediagoblin.service "$pkgdir"/lib/systemd/system/mediagoblin.service
 }
 

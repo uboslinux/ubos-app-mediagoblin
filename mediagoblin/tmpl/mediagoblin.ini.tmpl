@@ -2,7 +2,7 @@
 direct_remote_path = /mgoblin_static/
 email_sender_address = "noreply@${site.hostnameorsystemhostname}"
 
-sql_engine = postgresql:///${appconfig.postgresql.dbname.maindb}
+sql_engine = postgresql://${appconfig.postgresql.dbuser.maindb}:${appconfig.postgresql.dbusercredential.maindb}@${appconfig.postgresql.dbhost.maindb}:${appconfig.postgresql.dbport.maindb}/${appconfig.postgresql.dbname.maindb}
 
 email_debug_mode = true
 allow_registration = true

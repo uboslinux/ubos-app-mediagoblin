@@ -53,7 +53,7 @@
                 {
                     "type"         : "file",
                     "name"         : "${appconfig.datadir}/mediagoblin.ini",
-                    "template"     : "tmpl/paste.ini.tmpl",
+                    "template"     : "tmpl/mediagoblin.ini.tmpl",
                     "templatelang" : "varsubst"
                 },
                 {
@@ -66,13 +66,13 @@
             "installers" : [
                 {
                     "type"   : "perlscript",
-                    "source" : "bin/dbupdate.pl"
+                    "source" : "bin/init.pl"
                 }
             ],
             "upgraders" : [
                 {
                     "type"   : "perlscript",
-                    "source" : "bin/dbupdate.pl"
+                    "source" : "bin/init.pl"
                 },
             ]
         },

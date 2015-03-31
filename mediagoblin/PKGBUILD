@@ -24,7 +24,9 @@ build() {
 
     git submodule init && git submodule update
 
-#    (virtualenv2 --system-site-packages . || virtualenv2 .) && ./bin/python2 ./setup.py develop
+    virtualenv2 --system-site-packages --no-setuptools .
+    ./bin/python2 ./setup.py develop
+    virtualenv2 --system-site-packages --relocatable .
 }
 
 package() {
@@ -45,7 +47,7 @@ package() {
     
 # Code
     mkdir -p ${pkgdir}/usr/share/${pkgname}/bin
-    install -m755 ${startdir}/bin/dbupdate.pl ${pkgdir}/usr/share/${pkgname}/bin/
+    install -m755 ${startdir}/bin/init.pl ${pkgdir}/usr/share/${pkgname}/bin/
 
 #    mkdir -p ${pkgdir}/usr/share/${pkgname}/tmpl
 #    install -m644 ${startdir}/tmpl/htaccess.tmpl ${pkgdir}/usr/share/${pkgname}/tmpl/

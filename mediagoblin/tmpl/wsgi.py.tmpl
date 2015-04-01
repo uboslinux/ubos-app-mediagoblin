@@ -8,7 +8,7 @@ import os
 os.environ['PYTHON_EGG_CACHE'] = '/var/cache/${appconfig.appconfigid}/egg-cache'
 
 import site
-site.addsitedir('${package.codedir}/site-packages')
+site.addsitedir('${package.codedir}/mediagoblin/site-packages')
   
 from paste.deploy import loadapp
  

@@ -1,7 +1,7 @@
 # From https://wiki.mediagoblin.org/Deployment#Apache_2_Config_With_mod_wsgi
 # with changes
 
-Alias /mgoblin_static/ ${package.codedir}/mediagoblin/static/
+Alias /mgoblin_static/ ${package.codedir}/mediagoblin/mediagoblin/static/
 Alias /mgoblin_media/ ${appconfig.datadir}/user_dev/media/public/
  
 WSGIScriptAlias / ${appconfig.apache2.dir}/wsgi.py
@@ -18,7 +18,7 @@ WSGIDaemonProcess gmg processes=2 threads=10 \
 WSGIProcessGroup gmg
 WSGIApplicationGroup %{GLOBAL}
 
-<Directory "${package.codedir}/mediagoblin/static">
+<Directory "${package.codedir}/mediagoblin/mediagoblin/static">
     Require all granted
 </Directory>
 <Directory "${appconfig.datadir}/user_dev/media/public">

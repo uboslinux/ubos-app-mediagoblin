@@ -50,17 +50,18 @@ package() {
 
 # Data
     mkdir -p ${pkgdir}/var/lib/${pkgname}
-    
+
 # Code
     mkdir -p ${pkgdir}/usr/share/${pkgname}/bin
     install -m755 ${startdir}/bin/init.pl ${pkgdir}/usr/share/${pkgname}/bin/
 
-#    mkdir -p ${pkgdir}/usr/share/${pkgname}/tmpl
-#    install -m644 ${startdir}/tmpl/htaccess.tmpl ${pkgdir}/usr/share/${pkgname}/tmpl/
-#    touch ${pkgdir}/usr/share/${pkgname}/tmpl/ocdata
+    mkdir -p ${pkgdir}/usr/share/${pkgname}/mediagoblin
 
-    cp -dr --no-preserve=ownership ${startdir}/src/mediagoblin/mediagoblin ${pkgdir}/usr/share/${pkgname}/
-#    rsync -r -l -p -t --exclude .git --exclude ${startdir}/src/mediagoblin ${pkgdir}/usr/share/${pkgname}/
+    cp -dr --no-preserve=ownership ${startdir}/src/mediagoblin/{extlib,m4,mediagoblin,mediagoblin.egg-info,site-packages} ${pkgdir}/usr/share/${pkgname}/mediagoblin
+
+# Celery service
+    mkdir -p ${pkgdir}/usr/lib/systemd/system
+    install -m755 ${startdir}/systemd/mediagoblin-celeryd\@.service ${pkgdir}/usr/lib/systemd/system/
 }
 
 

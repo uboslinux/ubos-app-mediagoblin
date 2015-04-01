@@ -3,7 +3,7 @@
 
     "roles" : {
         "apache2" : {
-            "fixedcontext" : "",
+            "defaultcontext" : "",
             "depends" : [
                 "mod_wsgi2"
             ],
@@ -52,9 +52,19 @@
                 },
                 {
                     "type"         : "file",
+                    "name"         : "${appconfig.datadir}/paste.ini",
+                    "template"     : "tmpl/paste.ini.tmpl",
+                    "templatelang" : "varsubst"
+                },
+                {
+                    "type"         : "file",
                     "name"         : "${appconfig.apache2.appconfigfragmentfile}",
                     "template"     : "tmpl/htaccess.tmpl",
                     "templatelang" : "varsubst"
+                },
+                {
+                    "type"         : "systemd-service",
+                    "name"         : "mediagoblin-celeryd@${appconfig.appconfigid}"
                 }
             ],
             "installers" : [
@@ -80,6 +90,32 @@
                     "privileges" : "all privileges"
                 }
             ]
+        }
+    },
+    "customizationpoints" : {
+        "emaildebugmode" : {
+            "name" : "E-mail debug mode",
+            "type" : "boolean",
+            "required" : false,
+            "default" : {
+                "value" : false
+            }
+        },
+        "allowregistration" : {
+            "name" : "Allow registration",
+            "type" : "boolean",
+            "required" : false,
+            "default" : {
+                "value" : false
+            }
+        },
+        "allowreporting" : {
+            "name" : "Allow reporting",
+            "type" : "boolean",
+            "required" : false,
+            "default" : {
+                "value" : true
+            }
         }
     }
 }

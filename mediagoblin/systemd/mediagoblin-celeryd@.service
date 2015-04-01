@@ -1,0 +1,20 @@
+[Unit]
+Description=Celeryd for mediagoblin at %I
+Wants=ubos-httpd.service
+After=ubos-httpd.service
+
+[Service]
+User=http
+Group=http
+Type=simple
+WorkingDirectory=/usr/share/mediagoblin/mediagoblin
+Environment= \
+    CELERY_CONFIG_MODULE=mediagoblin.init.celery.from_celery \
+    PYTHON_EGG_CACHE=/var/cache/%i/egg-cache \
+    PYTHONPATH=/usr/share/mediagoblin/mediagoblin:/usr/share/mediagoblin/mediagoblin/site-packages \
+    MEDIAGOBLIN_CONFIG=/var/lib/mediagoblin/%i/mediagoblin.ini
+ExecStart=/usr/share/mediagoblin/mediagoblin/site-packages/celery worker
+PIDFile=/var/run/mediagoblin/mediagoblin-celeryd-%I.pid
+
+[Install]
+WantedBy=multi-user.target

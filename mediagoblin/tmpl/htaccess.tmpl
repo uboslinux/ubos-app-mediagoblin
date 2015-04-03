@@ -1,10 +1,10 @@
 # From https://wiki.mediagoblin.org/Deployment#Apache_2_Config_With_mod_wsgi
 # with changes
 
-Alias /mgoblin_static/ ${package.codedir}/mediagoblin/mediagoblin/static/
-Alias /mgoblin_media/ ${appconfig.datadir}/public/
+Alias ${appconfig.context}/mgoblin_static/ ${package.codedir}/mediagoblin/mediagoblin/static/
+Alias ${appconfig.context}/mgoblin_media/ ${appconfig.datadir}/public/
  
-WSGIScriptAlias / ${appconfig.apache2.dir}/wsgi.py
+WSGIScriptAlias ${appconfig.contextorslash} ${appconfig.apache2.dir}/wsgi.py
 
 # Set user and group to whatever user you used to install mediagoblin (if you used a system account, 
 # it may have the group 'nogroup' assigned, in that case you can remove the group parameter)

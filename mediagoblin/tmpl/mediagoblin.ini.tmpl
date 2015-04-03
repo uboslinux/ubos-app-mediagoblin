@@ -8,7 +8,7 @@ email_debug_mode = ${installable.customizationpoints.emaildebugmode.value}
 allow_registration = ${installable.customizationpoints.allowregistration.value}
 allow_reporting = ${installable.customizationpoints.allowreporting.value}
 
-# local_templates = %(here)s/user_dev/templates/
+local_templates = %(here)s/templates/
 
 ## You can set your theme by specifying this (not specifying it will
 ## use the default theme).  Run `gmg assetlink` to apply the change.
@@ -21,10 +21,10 @@ allow_reporting = ${installable.customizationpoints.allowreporting.value}
 
 user_privilege_scheme = "uploader,commenter,reporter"
 [storage:queuestore]
-base_dir = %(here)s/user_dev/media/queue
+base_dir = %(here)s/media/queue
 
 [storage:publicstore]
-base_dir = %(here)s/user_dev/media/public
+base_dir = %(here)s/public
 base_url = /mgoblin_media/
 
 # Place plugins here, each in their own subsection of [plugins].

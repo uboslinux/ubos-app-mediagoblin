@@ -40,10 +40,7 @@ if( 'install' eq $operation || 'upgrade' eq $operation ) {
     # gpg always exits with 0
     UBOS::Utils::myexec( "$gmg adduser --username '$adminlogin' --password '$adminpass' --email '$adminemail'", undef, \$out, \$err );
     if( "$out$err" =~ /a user with that name already exists/ ) {
-        UBOS::Utils::myexec( "$gmg changepw '$adminlogin' '$adminpass'" );
-        
-    } else {
-        error( 'Mediagoblin adduser failed', $out, $err );
+        UBOS::Utils::myexec( "$gmg changepw '$adminlogin' '$adminpass'", \$out, \$err );
     }
     UBOS::Utils::myexec( "$gmg makeadmin '$adminlogin'", undef, \$out, \$err );
 }

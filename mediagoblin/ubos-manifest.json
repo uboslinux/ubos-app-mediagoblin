@@ -19,15 +19,27 @@
                 },
                 {
                     "type"  : "directory",
+                    "name"  : "${appconfig.datadir}/templates",
+                    "uname" : "${apache2.uname}",
+                    "gname" : "${apache2.gname}",
+                    "retentionpolicy"  : "keep",
+                    "retentionbucket"  : "templates"
+                },
+                {
+                    "type"  : "directory",
                     "name"  : "${appconfig.datadir}/media",
                     "uname" : "${apache2.uname}",
-                    "gname" : "${apache2.gname}"
+                    "gname" : "${apache2.gname}",
+                    "retentionpolicy"  : "keep",
+                    "retentionbucket"  : "media"
                 },
                 {
                     "type"  : "directory",
                     "name"  : "${appconfig.datadir}/public",
                     "uname" : "${apache2.uname}",
-                    "gname" : "${apache2.gname}"
+                    "gname" : "${apache2.gname}",
+                    "retentionpolicy"  : "keep",
+                    "retentionbucket"  : "public"
                 },
                 {
                     "type"  : "directory",
@@ -83,7 +95,7 @@
         "postgresql" : {
             "appconfigitems" : [
                 {
-                    "type"       : "postgresql-database",
+                    "type"       : "database",
                     "name"       : "maindb",
                     "retentionpolicy"  : "keep",
                     "retentionbucket"  : "maindb",

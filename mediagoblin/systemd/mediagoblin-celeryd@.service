@@ -12,7 +12,8 @@ Environment= \
     CELERY_CONFIG_MODULE=mediagoblin.init.celery.from_celery \
     PYTHON_EGG_CACHE=/var/cache/%i/egg-cache \
     PYTHONPATH=/usr/share/mediagoblin/mediagoblin:/usr/share/mediagoblin/mediagoblin/site-packages \
-    MEDIAGOBLIN_CONFIG=/var/lib/mediagoblin/%i/mediagoblin.ini
+    MEDIAGOBLIN_CONFIG=/var/lib/mediagoblin/%i/mediagoblin.ini \
+    PASTE_CONFIG=/var/lib/mediagoblin/%i/paste.ini
 ExecStart=/usr/share/mediagoblin/mediagoblin/site-packages/celery worker
 PIDFile=/var/run/mediagoblin/mediagoblin-celeryd-%I.pid
 

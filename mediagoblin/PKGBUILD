@@ -3,7 +3,7 @@ url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
 pkgver=v0.7.1.r1.g47f66be
-pkgrel=5
+pkgrel=6
 pkgdesc="Free software media publishing platform"
 arch=('any')
 license=("AGPL")
@@ -41,8 +41,8 @@ package() {
     install -m0644 ${startdir}/ubos-manifest.json ${pkgdir}/var/lib/ubos/manifests/${pkgname}.json
 
 # Icons
-#    mkdir -p ${pkgdir}/srv/http/_appicons/$pkgname
-#    install -m644 ${startdir}/appicons/{72x72,144x144}.png ${pkgdir}/srv/http/_appicons/$pkgname/
+    mkdir -p ${pkgdir}/srv/http/_appicons/$pkgname
+    install -m644 ${startdir}/appicons/{72x72,144x144}.png ${pkgdir}/srv/http/_appicons/$pkgname/
 
 # Templates
     mkdir -p ${pkgdir}/usr/share/${pkgname}/tmpl

@@ -2,12 +2,13 @@ developer=http://www.mediagoblin.org/
 url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
-pkgver=v0.7.1.r1.g47f66be
-pkgrel=7
+pkgver=v0.8.0.r5.gcc92922
+pkgrel=1
 pkgdesc="Free software media publishing platform"
 arch=('any')
 license=("AGPL")
-source=("git+https://gitorious.org/mediagoblin/mediagoblin.git#branch=stable")
+source=("git://git.savannah.gnu.org/mediagoblin.git#branch=stable")
+
 # Do not need to specify dependency on postgresql; ubos-manifest role does this implicitly
 depends=('python2' 'python2-lxml' 'python2-pillow' 'python2-psycopg2' 'python2-setuptools')
 makedepends=('git' 'python2-virtualenv')

@@ -2,26 +2,21 @@ developer=http://www.mediagoblin.org/
 url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
-pkgver=v0.8.0.r5.gcc92922
+pkgver=v0.8.0
 pkgrel=1
 pkgdesc="Free software media publishing platform"
 arch=('any')
 license=("AGPL")
-source=("git://git.savannah.gnu.org/mediagoblin.git#branch=stable")
+source=("http://git.savannah.gnu.org/cgit/mediagoblin.git/snapshot/mediagoblin-${pkgver}.tar.gz")
 
 # Do not need to specify dependency on postgresql; ubos-manifest role does this implicitly
 depends=('python2' 'python2-lxml' 'python2-pillow' 'python2-psycopg2' 'python2-setuptools')
 makedepends=('git' 'python2-virtualenv')
 options=('!strip')
-md5sums=('SKIP')
-
-pkgver() {
-    cd "${pkgname}"
-    git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
-}
+sha512sums=('66a09c63a4f36e49ffc357c3d52d2db956f393d637c276f57597bcd5488301c9667b53dc31d2bd220237f18ab7b729699f77775a2dd8e7d451ddbf14726b4ceb')
 
 build() {
-    cd "${srcdir}/mediagoblin"
+    cd "${srcdir}/${pkgname}-${pkgver}"
 
     git submodule init && git submodule update
 
@@ -58,7 +53,7 @@ package() {
 
     mkdir -p ${pkgdir}/usr/share/${pkgname}/mediagoblin
 
-    cp -dr --no-preserve=ownership ${startdir}/src/mediagoblin/{extlib,m4,mediagoblin,mediagoblin.egg-info,site-packages} ${pkgdir}/usr/share/${pkgname}/mediagoblin
+    cp -dr --no-preserve=ownership ${startdir}/src/${pkgname}-${pkgver}/{extlib,m4,mediagoblin,mediagoblin.egg-info,site-packages} ${pkgdir}/usr/share/${pkgname}/mediagoblin
 
 # Celery service
     mkdir -p ${pkgdir}/usr/lib/systemd/system

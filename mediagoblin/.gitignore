@@ -1,4 +1,4 @@
-mediagoblin-*any.pkg.tar.xz
+mediagoblin-*.tar*
 pkg/
 src/
 mediagoblin/

@@ -3,7 +3,7 @@ url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
 pkgver=v0.8.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Free software media publishing platform"
 arch=('any')
 license=("AGPL")
@@ -13,7 +13,7 @@ source=("http://git.savannah.gnu.org/cgit/mediagoblin.git/snapshot/mediagoblin-$
 depends=('python2' 'python2-lxml' 'python2-pillow' 'python2-psycopg2' 'python2-setuptools')
 makedepends=('git' 'python2-virtualenv')
 options=('!strip')
-sha512sums=('f5a8902798c7f1849be104fe590deec732d794bc9f45bacabc9912c61be3e9f90fcc14fbc34fa160ef34e18597d649d4fa3c5e9e558f9a98fa7fbb9bef8d1d70')
+sha512sums=('SKIP')
 
 build() {
     cd "${srcdir}/${pkgname}-${pkgver}"

@@ -3,7 +3,7 @@ url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
 pkgver=v0.9.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Free software media publishing platform"
 arch=('any')
 license=("AGPL")
@@ -13,8 +13,9 @@ source=("http://git.savannah.gnu.org/cgit/mediagoblin.git/snapshot/mediagoblin-$
 depends=('python' 'python-lxml' 'python-pillow' 'python-psycopg2' 'python-setuptools')
 makedepends=('git' 'python-virtualenv')
 options=('!strip')
-# sha512sums=('SKIP')
-sha512sums=('0be1192414a7ddb45f1093f736afe08123b2d7a404a0ac17cedcfa048f4bf0c60ecc663a3094f3534603fde87cdc373073cbb692a92b7ff7fbe6eb202a60e3fb')
+sha512sums=('SKIP')
+# The checksum cannot currently be checked, as the gzip file downloaded from ${source} keeps having
+# changed time stamps in byte 5-8 of the file (GZIP timestamp header)
 
 build() {
     cd "${srcdir}/${pkgname}-${pkgver}"

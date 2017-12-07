@@ -8,6 +8,7 @@ pkgdesc="Free software media publishing platform"
 arch=('any')
 license=("AGPL")
 source=("http://git.savannah.gnu.org/cgit/mediagoblin.git/snapshot/mediagoblin-${pkgver}.tar.gz")
+releasepage=("http://git.savannah.gnu.org/cgit/mediagoblin.git/")
 
 # Do not need to specify dependency on postgresql; ubos-manifest role does this implicitly
 depends=('python' 'python-lxml' 'python-pillow' 'python-psycopg2' 'python-setuptools')

@@ -11,8 +11,8 @@ source=("http://git.savannah.gnu.org/cgit/mediagoblin.git/snapshot/mediagoblin-$
 releasepage=("http://git.savannah.gnu.org/cgit/mediagoblin.git/")
 
 # Do not need to specify dependency on postgresql; ubos-manifest role does this implicitly
-depends=('python' 'python-lxml' 'python-pillow' 'python-psycopg2' 'python-setuptools')
-makedepends=('git' 'python-virtualenv')
+depends=('python2' 'python2-lxml' 'python2-pillow' 'python2-psycopg2' 'python2-setuptools' 'python2-sqlalchemy')
+makedepends=('git' 'python2-virtualenv')
 options=('!strip')
 sha512sums=('SKIP')
 # The checksum cannot currently be checked, as the gzip file downloaded from ${source} keeps having

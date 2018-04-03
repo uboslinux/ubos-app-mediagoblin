@@ -1,7 +1,7 @@
 [Unit]
 Description=Celeryd for mediagoblin at %I
-Wants=ubos-httpd.service
-After=ubos-httpd.service
+Wants=httpd.service
+After=httpd.service
 
 [Service]
 User=http
